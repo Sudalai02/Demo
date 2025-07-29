@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Animation Demo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+
+    body {
+      background: #f0f0f0;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-top: 50px;
+      color: #333;
+    }
+
+    .demo-box {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      display: inline-block;
+      color: white;
+      text-align: center;
+      line-height: 100px;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+
+    /* 1. Translate */
+    .translate-box {
+      background: #3498db;
+      animation: slideRight 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes slideRight {
+      from { transform: translateX(0); }
+      to { transform: translateX(200px); }
+    }
+
+    /* 2. Scale */
+    .scale-box {
+      background: #27ae60;
+      animation: growScale 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes growScale {
+      from { transform: scale(1); }
+      to { transform: scale(1.5); }
+    }
+
+    /* 3. Rotate */
+    .rotate-box {
+      background: #e74c3c;
+      animation: rotateSpin 2s linear infinite;
+    }
+
+    @keyframes rotateSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 4. Skew */
+    .skew-box {
+      background: #8e44ad;
+      animation: skewBox 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes skewBox {
+      from { transform: skewX(0deg); }
+      to { transform: skewX(30deg); }
+    }
+
+    /* 5. 3D Rotation */
+    .rotate3d-box {
+      background: #f39c12;
+      transform-style: preserve-3d;
+      animation: rotate3D 3s linear infinite;
+    }
+
+    @keyframes rotate3D {
+      from { transform: rotateY(0deg); }
+      to { transform: rotateY(360deg); }
+    }
+
+    /* 6. Animation Fill Mode */
+    .fillmode-box {
+      background: #1abc9c;
+      animation: growOnce 2s ease-in-out forwards;
+    }
+
+    @keyframes growOnce {
+      from { transform: scale(1); }
+      to { transform: scale(2); }
+    }
+
+    /* 7. Animation Delay + Count */
+    .delay-box {
+      background: #2c3e50;
+      animation: fadeInOut 2s ease-in-out 1s 3 alternate;
+    }
+
+    @keyframes fadeInOut {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* 8. Paused & Play State (on hover) */
+    .pause-box {
+      background: #d35400;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .pause-box:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-40px); }
+      100% { transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>🎨 CSS Animation Demo</h1>
+
+  <h2>1. Translate (slide right)</h2>
+  <div class="demo-box translate-box">Slide</div>
+
+  <h2>2. Scale (grow/shrink)</h2>
+  <div class="demo-box scale-box">Scale</div>
+
+  <h2>3. Rotate (spin)</h2>
+  <div class="demo-box rotate-box">Rotate</div>
+
+  <h2>4. Skew (tilt)</h2>
+  <div class="demo-box skew-box">Skew</div>
+
+  <h2>5. 3D Rotate</h2>
+  <div class="demo-box rotate3d-box">3D</div>
+
+  <h2>6. Fill Mode (grows once and stays)</h2>
+  <div class="demo-box fillmode-box">Fill</div>
+
+  <h2>7. Delay + Count (fades in/out 3 times)</h2>
+  <div class="demo-box delay-box">Delay</div>
+
+  <h2>8. Play State (pause on hover)</h2>
+  <div class="demo-box pause-box">Hover Me</div>
+
+</body>
+</html>
