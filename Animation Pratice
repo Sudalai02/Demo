@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Animation Properties Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #444;
+    }
+
+    .demo-box {
+      width: 100px;
+      height: 100px;
+      background: #4CAF50;
+      margin: 20px;
+      display: inline-block;
+      color: white;
+      text-align: center;
+      line-height: 100px;
+      border-radius: 10px;
+    }
+
+    /* 1. animation-name */
+    @keyframes move {
+      from { transform: translateX(0); }
+      to { transform: translateX(100px); }
+    }
+
+    @keyframes bounce {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-50px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes fade {
+      from { opacity: 1; }
+      to   { opacity: 0; }
+    }
+
+    @keyframes scaleUp {
+      from { transform: scale(1); }
+      to   { transform: scale(1.5); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes stepMove {
+      0% { left: 0; }
+      100% { left: 100px; }
+    }
+
+    /* Animation Examples */
+    .name { animation-name: move; animation-duration: 2s; }
+
+    .duration1 { animation: bounce 1s infinite; }
+    .duration2 { animation: bounce 2s infinite; }
+    .duration3 { animation: bounce 3s infinite; }
+    .duration4 { animation: bounce 500ms infinite; }
+    .duration5 { animation: bounce 0.75s infinite; }
+    .duration6 { animation: bounce 5s infinite; }
+
+    .delay1 { animation: fade 1s ease-in 0s; }
+    .delay2 { animation: fade 1s ease-in 1s; }
+    .delay3 { animation: fade 1s ease-in 2s; }
+    .delay4 { animation: fade 1s ease-in 500ms; }
+    .delay5 { animation: fade 1s ease-in 3s; }
+    .delay6 { animation: fade 1s ease-in 1.5s; }
+
+    .count1 { animation: scaleUp 2s linear 0s 1; }
+    .count2 { animation: scaleUp 2s linear 0s 2; }
+    .count3 { animation: scaleUp 2s linear 0s 5; }
+    .count4 { animation: scaleUp 2s linear 0s infinite; }
+    .count5 { animation: scaleUp 2s linear 0s 0.5; }
+    .count6 { animation: scaleUp 2s linear 0s 3.5; }
+
+    .direction1 { animation: move 2s infinite normal; }
+    .direction2 { animation: move 2s infinite reverse; }
+    .direction3 { animation: move 2s infinite alternate; }
+    .direction4 { animation: move 2s infinite alternate-reverse; }
+
+    .timing1 { animation: rotate 2s linear infinite; }
+    .timing2 { animation: rotate 2s ease infinite; }
+    .timing3 { animation: rotate 2s ease-in infinite; }
+    .timing4 { animation: rotate 2s ease-out infinite; }
+    .timing5 { animation: rotate 2s ease-in-out infinite; }
+    .timing6 { animation: stepMove 2s steps(4) infinite; position: relative; }
+
+    .fill1 { animation: fade 2s ease-in-out 0s 1 none; }
+    .fill2 { animation: fade 2s ease-in-out 0s 1 forwards; }
+    .fill3 { animation: fade 2s ease-in-out 0s 1 backwards; }
+    .fill4 { animation: fade 2s ease-in-out 0s 1 both; }
+
+    .play1 { animation: bounce 2s infinite running; }
+    .play2 { animation: bounce 2s infinite paused; }
+
+    .shorthand1 { animation: bounce 2s ease-in-out infinite alternate; }
+    .shorthand2 { animation: move 3s linear 1s 2 normal forwards; }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Animation Property Demo</h1>
+
+  <h2>1. animation-name</h2>
+  <div class="demo-box name">Name</div>
+
+  <h2>2. animation-duration</h2>
+  <div class="demo-box duration1">1s</div>
+  <div class="demo-box duration2">2s</div>
+  <div class="demo-box duration3">3s</div>
+  <div class="demo-box duration4">500ms</div>
+  <div class="demo-box duration5">0.75s</div>
+  <div class="demo-box duration6">5s</div>
+
+  <h2>3. animation-delay</h2>
+  <div class="demo-box delay1">0s</div>
+  <div class="demo-box delay2">1s</div>
+  <div class="demo-box delay3">2s</div>
+  <div class="demo-box delay4">500ms</div>
+  <div class="demo-box delay5">3s</div>
+  <div class="demo-box delay6">1.5s</div>
+
+  <h2>4. animation-iteration-count</h2>
+  <div class="demo-box count1">1x</div>
+  <div class="demo-box count2">2x</div>
+  <div class="demo-box count3">5x</div>
+  <div class="demo-box count4">∞</div>
+  <div class="demo-box count5">0.5</div>
+  <div class="demo-box count6">3.5</div>
+
+  <h2>5. animation-direction</h2>
+  <div class="demo-box direction1">Normal</div>
+  <div class="demo-box direction2">Reverse</div>
+  <div class="demo-box direction3">Alternate</div>
+  <div class="demo-box direction4">Alt-Rev</div>
+
+  <h2>6. animation-timing-function</h2>
+  <div class="demo-box timing1">Linear</div>
+  <div class="demo-box timing2">Ease</div>
+  <div class="demo-box timing3">Ease-In</div>
+  <div class="demo-box timing4">Ease-Out</div>
+  <div class="demo-box timing5">Ease-In-Out</div>
+  <div class="demo-box timing6">Steps</div>
+
+  <h2>7. animation-fill-mode</h2>
+  <div class="demo-box fill1">None</div>
+  <div class="demo-box fill2">Forwards</div>
+  <div class="demo-box fill3">Backwards</div>
+  <div class="demo-box fill4">Both</div>
+
+  <h2>8. animation-play-state</h2>
+  <div class="demo-box play1">Running</div>
+  <div class="demo-box play2">Paused</div>
+
+  <h2>9. animation (shorthand)</h2>
+  <div class="demo-box shorthand1">Short 1</div>
+  <div class="demo-box shorthand2">Short 2</div>
+
+</body>
+</html>
