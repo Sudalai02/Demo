@@ -1,0 +1,151 @@
+import React, { useState } from "react";
+import { assets } from "../assets"; // adjust your path
+import "./Navbar.css";
+
+function Navbar() {
+  const [menu, setMenu] = useState("home");
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <nav className="navbar">
+      {/* Logo */}
+      <img src={assets.logo} alt="logo" className="logo" />
+
+      {/* Menu */}
+      <ul className={`navbar-menu ${isOpen ? "open" : ""}`}>
+        <li>
+          <a href="#home" onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</a>
+        </li>
+        <li>
+          <a href="#explore-menu" onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
+        </li>
+        <li>
+          <a href="#app-download" onClick={() => setMenu("mobile-app")} className={menu === "mobile-app" ? "active" : ""}>Mobile App</a>
+        </li>
+        <li>
+          <a href="#footer" onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
+        </li>
+      </ul>
+
+      {/* Right Side */}
+      <div className="navbar-right">
+        <img src={assets.search_icon} alt="search" />
+        <div className="navbar-basket">
+          <img src={assets.basket_icon} alt="basket" />
+          <div className="dot"></div>
+        </div>
+        <button className="signin-btn">Sign In</button>
+
+        {/* Hamburger (mobile only) */}
+        <div className={`hamburger ${isOpen ? "active" : ""}`} onClick={() => setIsOpen(!isOpen)}>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export default Navbar;
+
+
+
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  height: 40px;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+}
+
+.navbar-menu li a.active {
+  color: tomato;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.signin-btn {
+  padding: 8px 18px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  background: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Hamburger styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Animate hamburger */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* ====== Mobile ====== */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 70px;
+    right: 5%;
+    width: 200px;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
