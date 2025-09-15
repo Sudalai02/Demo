@@ -1,0 +1,268 @@
+©
+
+import React, { useState } from "react";
+import "./Navbar.css";
+import { assets } from "../../assets/assets";
+
+const Navbar = ({ setShowLogin }) => {
+  const [menu, setMenu] = useState("home");
+  const [open, setOpen] = useState(false); // for mobile hamburger
+
+  return (
+    <div className="navbar">
+      <img src={assets.logo} alt="logo" className="logo" />
+
+      {/* Desktop menu */}
+      <ul className={`navbar-menu ${open ? "open" : ""}`}>
+        <a
+          href="#home"
+          onClick={() => {
+            setMenu("home");
+            setOpen(false);
+          }}
+          className={menu === "home" ? "active" : ""}
+        >
+          home
+        </a>
+        <a
+          href="#explore-menu"
+          onClick={() => {
+            setMenu("menu");
+            setOpen(false);
+          }}
+          className={menu === "menu" ? "active" : ""}
+        >
+          menu
+        </a>
+        <a
+          href="#app-downlode"
+          onClick={() => {
+            setMenu("mobile-app");
+            setOpen(false);
+          }}
+          className={menu === "mobile-app" ? "active" : ""}
+        >
+          mobile-app
+        </a>
+        <a
+          href="#footer"
+          onClick={() => {
+            setMenu("contact-us");
+            setOpen(false);
+          }}
+          className={menu === "contact-us" ? "active" : ""}
+        >
+          contact us
+        </a>
+      </ul>
+
+      {/* Right icons + button */}
+      <div className="navbar-right">
+        <img src={assets.search_icon} alt="search" />
+        <div className="navbar-search-icon">
+          <img src={assets.basket_icon} alt="basket" />
+          <div className="dot"></div>
+        </div>
+        <button onClick={() => setShowLogin(true)}>sign in</button>
+
+        {/* Hamburger */}
+        <div
+          className="hamburger"
+          onClick={() => setOpen(!open)}
+        >
+          ☰
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
+
+
+.navbar {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1000;
+  border-bottom: 1px solid #eee;
+}
+
+.navbar .logo {
+  width: 150px;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  color: #49557e;
+  font-size: 18px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar button {
+  background: transparent;
+  font-size: 16px;
+  color: #49557e;
+  border: 1px solid tomato;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navbar button:hover {
+  background-color: #fff4f3;
+}
+
+.navbar .active {
+  padding-bottom: 2px;
+  border-bottom: 2px solid #49557e;
+}
+
+.navbar-search-icon {
+  position: relative;
+}
+
+.navbar-search-icon .dot {
+  position: absolute;
+  min-width: 10px;
+  min-height: 10px;
+  background-color: tomato;
+  border-radius: 50%;
+  top: -6px;
+  right: -6px;
+}
+
+/* Hamburger hidden on desktop */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+
+
+import React from "react";
+import "./Header.css";
+
+function Header() {
+  return (
+    <div id="home" className="header">
+      <div className="header-contents">
+        <h2>Order your favourite food here</h2>
+        <p>
+          Choose from a diverse menu featuring a delectable array of dishes
+          crafted with the finest ingredients and culinary expertise.
+        </p>
+        <a href="#explore-menu">
+          <button>View Menu</button>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+export default Header;
+
+
+.header {
+  height: 80vh;
+  margin: 30px auto;
+  background: url('/header_img.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Dark overlay */
+.header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: 0;
+  border-radius: 12px;
+}
+
+/* Text */
+.header-contents {
+  position: absolute;
+  top: 50%;
+  left: 6vw;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  max-width: 40%;
+  z-index: 1;
+}
+
+.header-contents h2 {
+  font-weight: 700;
+  color: white;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.2;
+}
+
+.header-contents p {
+  color: white;
+  font-size: clamp(14px, 1.2vw, 18px);
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.header-contents button {
+  border: none;
+  color: #747474;
+  padding: 0.8rem 2rem;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.header-contents button:hover {
+  background: #f0f0f0;
+}
+
