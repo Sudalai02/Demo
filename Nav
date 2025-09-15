@@ -1,0 +1,100 @@
+import React, { useState } from 'react'
+import './Navbar.css'
+import { assets } from '../../assets/assets'
+import { Link } from 'react-router-dom'
+
+const Navbar = ({ setShowLogin }) => {
+  const [menu, setMenu] = useState("contact-us")
+  const [isOpen, setIsOpen] = useState(false) // ✅ for hamburger menu
+
+  return (
+    <div className='navbar'>
+      {/* Logo */}
+      <img src={assets.logo} alt='' className='logo' />
+
+      {/* Menu */}
+      <ul className={`navbar-menu ${isOpen ? "open" : ""}`}>
+        <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>home</Link>
+        <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>menu</a>
+        <a href='#app-downlode' onClick={() => setMenu("mobile-app")} className={menu === "mobile-app" ? "active" : ""}>mobile-app</a>
+        <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>contact us</a>
+      </ul>
+
+      {/* Right Section */}
+      <div className="navbar-right">
+        <img src={assets.search_icon} alt="" />
+        <div className="navbar-search-icon">
+          <img src={assets.basket_icon} alt="" />
+          <div className="dot"></div>
+        </div>
+        <button onClick={() => setShowLogin(true)}>sign in</button>
+
+        {/* ✅ Hamburger Icon */}
+        <div className={`hamburger ${isOpen ? "active" : ""}`} onClick={() => setIsOpen(!isOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Navbar
+
+
+/* existing styles stay the same... */
+
+/* Hamburger button (hidden by default) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #49557e;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Animate hamburger when active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* Mobile menu */
+@media (max-width: 900px) {
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;   /* under navbar */
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    gap: 15px;
+  }
+
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex; /* show hamburger on mobile */
+  }
+}
